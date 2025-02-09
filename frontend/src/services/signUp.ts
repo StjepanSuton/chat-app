@@ -22,6 +22,7 @@ export const useSignup = () => {
     },
     onError: (error: any) => {
       console.error(error.message);
+      return error;
     },
   });
 };

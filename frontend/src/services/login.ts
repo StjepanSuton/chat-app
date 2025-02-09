@@ -33,6 +33,7 @@ export const useLogin = () => {
 
     onError: (error) => {
       console.error("Error logging in:", error);
+      return error;
     },
   });
 };

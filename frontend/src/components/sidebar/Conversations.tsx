@@ -5,9 +5,9 @@ import { useSocketContext } from "src/context/SocketContext";
 const Conversations = () => {
   const { data: conversations, isLoading: loading } = useGetConversations();
   const { onlineUsers } = useSocketContext();
-  //useSubscribeToNotifications();
   return (
     <div className="py-2 flex flex-col overflow-auto">
+      <p>Friends</p>
       {conversations &&
         conversations.map((conversation) => (
           <Conversation

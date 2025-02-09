@@ -1,29 +1,46 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { Link } from "react-router-dom";
 import { useLogin } from "src/services";
 
+const loginSchema = z.object({
+  username: z.string().min(1, { message: "Username is required" }),
+  password: z.string().min(1, { message: "Password is required" }),
+});
+
+type FormData = {
+  username: string;
+  password: string;
+};
+
 const Login = () => {
-  const [inputs, setInputs] = useState({
-    username: "",
-    password: "",
+  const {
+    mutateAsync: login,
+    isPending: loading,
+    error: loginError,
+  } = useLogin();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: zodResolver(loginSchema),
   });
 
-  const { mutateAsync: login, isPending: loading } = useLogin();
-
-  const handleSubmitForm = (e: React.FormEvent) => {
-    e.preventDefault();
-    login({ username: inputs.username, password: inputs.password });
+  const onSubmit = (data: FormData) => {
+    login({ username: data.username, password: data.password });
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
+    <div className="flex border-2 rounded-lg flex-col items-center justify-center min-w-96 mx-auto">
       <div className="w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0">
         <h1 className="text-3xl font-semibold text-center text-white">
           Login
-          <span className="text-blue-500"> ChatApp</span>
+          <span className="text-green-500"> ChatApp</span>
         </h1>
 
-        <form onSubmit={handleSubmitForm}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div>
             <label className="label p-2 ">
               <span className="text-base label-text">Username</span>
@@ -31,12 +48,14 @@ const Login = () => {
             <input
               type="text"
               placeholder="Enter username"
-              className="w-full input input-bordered h-10"
-              value={inputs.username}
-              onChange={(e) =>
-                setInputs({ ...inputs, username: e.target.value })
-              }
+              className={`w-full input input-bordered h-10 ${
+                errors.username ? "border-red-500" : ""
+              }`}
+              {...register("username")}
             />
+            {errors.username && (
+              <p className="text-xs text-red-500">{errors.username.message}</p>
+            )}
           </div>
 
           <div>
@@ -46,12 +65,14 @@ const Login = () => {
             <input
               type="password"
               placeholder="Enter Password"
-              className="w-full input input-bordered h-10"
-              value={inputs.password}
-              onChange={(e) =>
-                setInputs({ ...inputs, password: e.target.value })
-              }
+              className={`w-full input input-bordered h-10 ${
+                errors.password ? "border-red-500" : ""
+              }`}
+              {...register("password")}
             />
+            {errors.password && (
+              <p className="text-xs text-red-500">{errors.password.message}</p>
+            )}
           </div>
           <Link
             to="/signup"
@@ -65,9 +86,17 @@ const Login = () => {
               {loading ? "Loading..." : "Login"}
             </button>
           </div>
+          {loginError && (
+            <p className="text-xs text-red-500">
+              {loginError.message.includes("400")
+                ? "Invalid username or password"
+                : "Something went wrong"}
+            </p>
+          )}
         </form>
       </div>
     </div>
   );
 };
+
 export default Login;

@@ -6,7 +6,9 @@ const LogoutButton = () => {
   const navigate = useNavigate();
   const { mutateAsync: logout } = useLogout(navigate);
   return (
-    <div className="mt-auto">
+    <div className="mt-auto ">
+      <div className="divider mt-auto" />
+
       <LogOut
         className="w-6 h-6 text-white cursor-pointer"
         onClick={async () => await logout()}
