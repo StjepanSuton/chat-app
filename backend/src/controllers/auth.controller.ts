@@ -133,13 +133,13 @@ export const getProfile = async (req: Request, res: Response) => {
     if (!profile) {
       return res.status(404).json({ error: "User not found" });
     }
-
     res.status(200).json({
       id: profile.id,
       fullName: profile.fullName,
       username: profile.username,
       profilePic: profile.profilePic,
-			unSeenConversationsIds: profile.unSeenConversationsIds,
+      unSeenConversationsIds: profile.unSeenConversationsIds,
+      userId: profile.userId,
     });
   } catch (error: any) {
     console.log("Error in getMe controller", error.message);

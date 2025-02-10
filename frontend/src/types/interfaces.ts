@@ -20,8 +20,19 @@ export interface SignupInputs {
 }
 
 export interface ConversationType {
-  id: string ;
+  id: string;
   fullName: string;
   profilePic: string;
+}
+
+export interface UserType {
+  id: string;
+  fullName: string;
+  username: string;
+  profilePic: string;
+  gender: string;
+}
+export interface UserProfileType extends UserType {
   unSeenConversationsIds: string[];
+  userId: string;
 }

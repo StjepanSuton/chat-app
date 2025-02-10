@@ -2,7 +2,7 @@ import { useGetConversations } from "src/services";
 import { Conversation } from "./Conversation";
 import { useSocketContext } from "src/context/SocketContext";
 
-const Conversations = () => {
+export const Conversations = () => {
   const { data: conversations, isLoading: loading } = useGetConversations();
   const { onlineUsers } = useSocketContext();
   return (
@@ -20,4 +20,3 @@ const Conversations = () => {
     </div>
   );
 };
-export default Conversations;

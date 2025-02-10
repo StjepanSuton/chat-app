@@ -2,7 +2,7 @@ import { Send } from "lucide-react";
 import { useState } from "react";
 import { useSendMessage } from "src/hooks";
 
-const MessageInput = () => {
+export const MessageInput = () => {
   const [message, setMessage] = useState("");
   const { sendMessage, loading } = useSendMessage();
 
@@ -36,4 +36,3 @@ const MessageInput = () => {
     </form>
   );
 };
-export default MessageInput;

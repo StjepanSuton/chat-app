@@ -22,7 +22,6 @@ model User {
   profilePic       String
   createdAt        DateTime    @default(now())
   updatedAt        DateTime    @updatedAt
-  conversationsIds String[]
   conversations    Conversation[]
   messages         Message[]
   profile          Profile?
@@ -48,10 +47,7 @@ model Conversation {
 
   participantIds String[]
   participants   User[]
-
-  messageIds String[]
   messages   Message[]
-  seenBy     Json @default("{}")
 }
 
 model Message {

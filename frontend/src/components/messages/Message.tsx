@@ -1,14 +1,17 @@
-import { useGetUser } from "src/services";
-import { extractTime } from "../../utils/extractTime";
-import useConversation from "../../zustand/useConversation";
+import { useGetUserProfile } from "src/services";
+
 import { MessageType } from "src/types";
+import { extractTime } from "src/utils";
+import { useConversation } from "src/zustand";
 
 export const Message = ({ message }: { message: MessageType }) => {
-  const { data: authUser } = useGetUser();
+  const { data: userProfile } = useGetUserProfile();
   const { selectedConversation } = useConversation();
 
-  const fromMe = message?.senderId === authUser?.id;
-  const img = fromMe ? authUser?.profilePic : selectedConversation?.profilePic;
+  const fromMe = message?.senderId === userProfile?.userId;
+  const img = fromMe
+    ? userProfile?.profilePic
+    : selectedConversation?.profilePic;
   const chatClass = fromMe ? "chat-end" : "chat-start";
 
   const bubbleBg = fromMe ? "bg-blue-500" : "";

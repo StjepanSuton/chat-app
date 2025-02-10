@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { UserProfileType } from "src/types";
 
-export const getUserProfile = async (): Promise<any> => {
+export const getUserProfile = async (): Promise<UserProfileType> => {
   try {
     const { data } = await axios.get("/api/auth/profile");
     return data;

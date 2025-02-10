@@ -6,11 +6,9 @@ interface ConversationState {
   setSelectedConversation: (conversation: ConversationType | null) => void;
 }
 
-const useConversation = create<ConversationState>((set) => ({
+export const useConversation = create<ConversationState>((set) => ({
   selectedConversation: null,
   setSelectedConversation: (conversation) => {
     set({ selectedConversation: conversation });
   },
 }));
-
-export default useConversation;

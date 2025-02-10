@@ -1,8 +1,8 @@
-import Conversations from "./Conversations";
-import LogoutButton from "./LogoutButton";
-import ProfileBar from "./ProfileBar";
+import { Conversations } from "./Conversations";
+import { LogoutButton } from "./LogoutButton";
+import { ProfileBar } from "./ProfileBar";
 
-const Sidebar = () => {
+export const Sidebar = () => {
   return (
     <div className="border-r border-slate-500 p-1 md:p-4 flex flex-col w-44 md:w-1/2">
       <ProfileBar />
@@ -12,4 +12,3 @@ const Sidebar = () => {
     </div>
   );
 };
-export default Sidebar;

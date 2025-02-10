@@ -1,6 +1,6 @@
 import { useChatScroll, useGetMessages, useSubscribeToChat } from "src/hooks";
-import MessageSkeleton from "../skeletons/MessageSkeleton";
 import { Message } from "./Message";
+import { MessageSkeleton } from "../skeletons";
 
 const Messages = () => {
   const { loading, messages } = useGetMessages();

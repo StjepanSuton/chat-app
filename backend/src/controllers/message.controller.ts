@@ -43,7 +43,6 @@ export const sendMessage = async (req: Request, res: Response) => {
         },
         data: {
           updatedAt: timeStamp,
-          seenBy: { ...(conversation.seenBy as {}), [senderId]: timeStamp },
           messages: {
             connect: {
               id: newMessage.id,
@@ -135,14 +134,10 @@ export const markConversationSeen = async (req: Request, res: Response) => {
     const user = await prisma.profile.findUnique({
       where: { userId },
     });
-    console.log({ user });
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
-    console.log(user?.unSeenConversationsIds, conversationId);
-    console.log(
-      user.unSeenConversationsIds.filter((id: string) => id !== conversationId)
-    );
+
     await prisma.profile.update({
       where: { userId },
       data: {

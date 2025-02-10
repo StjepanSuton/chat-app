@@ -1,6 +1,6 @@
 import { useGetUserProfile } from "src/services";
 
-const ProfileBar = () => {
+export const ProfileBar = () => {
   const { data: userProfile } = useGetUserProfile();
 
   return (
@@ -14,4 +14,3 @@ const ProfileBar = () => {
     </div>
   );
 };
-export default ProfileBar;

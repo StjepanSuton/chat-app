@@ -1,5 +1,5 @@
-import useConversation from "../zustand/useConversation";
 import { useSendMessageMutation } from "src/services";
+import { useConversation } from "src/zustand";
 
 export const useSendMessage = () => {
   const { selectedConversation } = useConversation();

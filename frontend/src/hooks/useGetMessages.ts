@@ -1,5 +1,5 @@
 import { useGetMessagesById } from "src/services";
-import useConversation from "../zustand/useConversation";
+import { useConversation } from "src/zustand";
 
 export const useGetMessages = () => {
   const { selectedConversation } = useConversation();

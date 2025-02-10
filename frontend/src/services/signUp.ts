@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { SignupInputs } from "src/types";
+import { SignupInputs, UserType } from "src/types";
 
-export const signupUser = async (inputs: SignupInputs): Promise<any> => {
+export const signupUser = async (inputs: SignupInputs): Promise<UserType> => {
   try {
     const { data } = await axios.post("/api/auth/signup", inputs);
     return data;

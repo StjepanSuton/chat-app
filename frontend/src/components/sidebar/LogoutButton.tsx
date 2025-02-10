@@ -2,7 +2,7 @@ import { LogOut } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useLogout } from "src/services";
 
-const LogoutButton = () => {
+export const LogoutButton = () => {
   const navigate = useNavigate();
   const { mutateAsync: logout } = useLogout(navigate);
   return (
@@ -16,4 +16,3 @@ const LogoutButton = () => {
     </div>
   );
 };
-export default LogoutButton;

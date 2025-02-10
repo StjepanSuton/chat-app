@@ -20,6 +20,7 @@ export const useLogout = (navigate: NavigateFunction) => {
     },
     onSuccess: () => {
       queryClient.setQueriesData({ queryKey: ["authUser"] }, null);
+      queryClient.setQueriesData({ queryKey: ["userProfile"] }, null);
       navigate("/login");
     },
     onError: (error) => {

@@ -26,7 +26,7 @@ export const useSendMessageMutation = (conversationId?: string | null) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async (messageData: any) => {
+    mutationFn: async (messageData: string) => {
       if (!conversationId) throw new Error("No conversation selected");
       const { data } = await axios.post(
         `/api/messages/send/${conversationId}`,

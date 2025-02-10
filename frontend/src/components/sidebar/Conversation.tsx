@@ -1,6 +1,6 @@
 import { ConversationType } from "src/types";
 import { useGetUserProfile, useMarkConversationSeen } from "src/services";
-import useConversation from "src/zustand/useConversation";
+import { useConversation } from "src/zustand";
 
 export const Conversation = ({
   conversation,
@@ -13,7 +13,6 @@ export const Conversation = ({
   const { setSelectedConversation, selectedConversation } = useConversation();
   const isSelected = selectedConversation?.id === conversation.id;
   const isOnline = onlineUsers?.includes(conversation.id);
-  console.log(userProfile?.unSeenConversationsIds, conversation.id);
   const isSeen = userProfile?.unSeenConversationsIds.includes(conversation.id);
   const { mutateAsync: markConversationSeen } = useMarkConversationSeen();
   return (

@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import useConversation from "src/zustand/useConversation";
 import { useSocketContext } from "src/context/SocketContext";
 import { useMarkConversationSeen } from "src/services";
 import { MessageType } from "src/types";
+import { useConversation } from "src/zustand";
 
 export const useSubscribeToChat = () => {
   const { selectedConversation } = useConversation();
